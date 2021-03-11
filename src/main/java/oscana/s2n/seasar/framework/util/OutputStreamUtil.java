@@ -1,0 +1,73 @@
+/*
+ * 取り込み元
+ *    ライブラリ名：     seasar2
+ *    クラス名：         org.seasar.framework.util.OutputStreamUtil
+ *    ソースリポジトリ： https://github.com/seasarorg/seasar2/blob/master/seasar2/s2-framework/src/main/java/org/seasar/framework/util/OutputStreamUtil.java
+ *
+ * 上記ファイルを取り込み、修正を加えた。
+ *
+ * Copyright 2020 TIS Inc.
+ *
+ * Copyright 2004-2013 the Seasar Foundation and the Others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+package oscana.s2n.seasar.framework.util;
+
+import java.io.IOException;
+import java.io.OutputStream;
+
+/**
+ * {@link OutputStream}用のユーティリティクラス。<br>
+ *
+ * <br>
+ * 移植内容の変更点：<br>
+ * <br>
+ *    ・クラス中に投げる例外はIORuntimeExceptionからRuntimeExceptionに変更する。<br>
+ *
+ * @author shot
+ */
+public class OutputStreamUtil {
+
+    /**
+     * {@link OutputStream}を閉じる。
+     *
+     * @param out 出力ストリーム
+     */
+    public static void close(OutputStream out) {
+        if (out == null) {
+            return;
+        }
+        try {
+            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * {@link OutputStream}をflushする。
+     *
+     * @param out 出力ストリーム
+     */
+    public static void flush(OutputStream out) {
+        if (out == null) {
+            return;
+        }
+        try {
+            out.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
