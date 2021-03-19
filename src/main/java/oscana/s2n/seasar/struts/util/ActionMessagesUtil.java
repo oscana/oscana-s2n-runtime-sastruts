@@ -25,7 +25,6 @@
 package oscana.s2n.seasar.struts.util;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import oscana.s2n.struts.Globals;
 import oscana.s2n.struts.action.ActionMessages;
@@ -59,23 +58,6 @@ public final class ActionMessagesUtil {
     }
 
     /**
-     * エラーメッセージをセッションに保存する。
-     *
-     * @param session
-     *            セッション
-     * @param errors
-     *            エラーメッセージ
-     * @since 1.0.2
-     */
-    public static void saveErrors(HttpSession session, ActionMessages errors) {
-        if ((errors == null) || errors.isEmpty()) {
-            session.removeAttribute(Globals.ERROR_KEY);
-            return;
-        }
-        session.setAttribute(Globals.ERROR_KEY, errors);
-    }
-
-    /**
      * メッセージをリクエストに保存する。
      *
      * @param request
@@ -91,23 +73,6 @@ public final class ActionMessagesUtil {
             return;
         }
         request.setAttribute(Globals.MESSAGE_KEY, messages);
-    }
-
-    /**
-     * メッセージをセッションに保存する。
-     *
-     * @param session
-     *            セッション
-     * @param messages
-     *            メッセージ
-     * @since 1.0.2
-     */
-    public static void saveMessages(HttpSession session, ActionMessages messages) {
-        if ((messages == null) || messages.isEmpty()) {
-            session.removeAttribute(Globals.MESSAGE_KEY);
-            return;
-        }
-        session.setAttribute(Globals.MESSAGE_KEY, messages);
     }
 
     /**
@@ -131,28 +96,6 @@ public final class ActionMessagesUtil {
         }
         requestErrors.add(errors);
         saveErrors(request, requestErrors);
-    }
-
-    /**
-     * エラーメッセージをセッションに追加する。
-     *
-     * @param session
-     *            セッション
-     * @param errors
-     *            エラーメッセージ
-     * @since 1.0.2
-     */
-    public static void addErrors(HttpSession session, ActionMessages errors) {
-        if (errors == null) {
-            return;
-        }
-        ActionMessages sessionErrors = (ActionMessages) session
-                .getAttribute(Globals.ERROR_KEY);
-        if (sessionErrors == null) {
-            sessionErrors = new ActionMessages();
-        }
-        sessionErrors.add(errors);
-        saveErrors(session, sessionErrors);
     }
 
     /**
@@ -193,27 +136,5 @@ public final class ActionMessagesUtil {
         }
         requestMessages.add(messages);
         saveMessages(request, requestMessages);
-    }
-
-    /**
-     * メッセージをセッションに追加する。
-     *
-     * @param session
-     *            セッション
-     * @param messages
-     *            メッセージ
-     * @since 1.0.2
-     */
-    public static void addMessages(HttpSession session, ActionMessages messages) {
-        if (messages == null) {
-            return;
-        }
-        ActionMessages sessionMessages = (ActionMessages) session
-                .getAttribute(Globals.MESSAGE_KEY);
-        if (sessionMessages == null) {
-            sessionMessages = new ActionMessages();
-        }
-        sessionMessages.add(messages);
-        saveMessages(session, sessionMessages);
     }
 }
