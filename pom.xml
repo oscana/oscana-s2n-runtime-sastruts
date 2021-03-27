@@ -46,6 +46,13 @@
       <url>https://github.com/oscana/${project.artifactId}/tree/master</url>
     </scm>
 
+  <repositories>
+    <repository>
+      <id>maven.seasar.org</id>
+      <name>The Seasar Foundation Maven2 Repository</name>
+      <url>http://maven.seasar.org/maven2</url>
+    </repository>
+  </repositories>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -180,6 +187,20 @@
                 <encoding>UTF-8</encoding>
                 <charset>UTF-8</charset>
                 <bottom>&amp;nbsp;</bottom>
+              <additionalDependencies>
+                   <additionalDependency>
+                      <groupId>struts</groupId>
+                      <artifactId>struts</artifactId>
+                      <version>1.2.9</version>
+                   </additionalDependency>
+                   <additionalDependency>
+                     <groupId>org.seasar.sastruts</groupId>
+                     <artifactId>sa-struts</artifactId>
+                     <version>1.0.0</version>
+                   </additionalDependency>
+                </additionalDependencies>
+
+
               </configuration>
             </plugin>
         </plugins>
